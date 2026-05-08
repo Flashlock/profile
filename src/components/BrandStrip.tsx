@@ -14,6 +14,13 @@ const WIDE_WIDTH = 220;
 const SQUARE_WIDTH = 88;
 const PILL_MARGIN_X = 16;
 const SCROLL_PX_PER_SEC = 80;
+// Generous fixed target so we don't have to react to window resizes (which
+// fire mid-scroll on mobile when the URL bar shows/hides) just to add a few
+// repeats. Enough to cover ultra-wide displays comfortably.
+const TARGET_TRACK_WIDTH = 6000;
+// Cap per-frame delta so a long blocked frame (e.g. layout work elsewhere on
+// the page during a scroll) doesn't translate into a visible position jump.
+const MAX_FRAME_MS = 50;
 
 const pillWidth = (b: BrandEntry) => (b.shape === 'square' ? SQUARE_WIDTH : WIDE_WIDTH);
 
@@ -29,12 +36,11 @@ function estimatedSegmentWidth(items: BrandEntry[]) {
  */
 export function BrandStrip() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLDivElement>(null);
   const halfRef = useRef<HTMLDivElement>(null);
   const [halfWidth, setHalfWidth] = useState(0);
-  const [viewportW, setViewportW] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : 1200,
-  );
   const [hovered, setHovered] = useState(false);
+  const visibleRef = useRef(true);
 
   const x = useMotionValue(0);
   const currentSpeedRef = useRef(0);
@@ -42,15 +48,27 @@ export function BrandStrip() {
   const expandedBrands = useMemo(() => {
     const baseW = estimatedSegmentWidth(brands);
     if (baseW <= 0) return brands;
-    const target = Math.max(viewportW * 2.5, 2400);
-    const repeats = Math.max(2, Math.ceil(target / baseW));
+    const repeats = Math.max(2, Math.ceil(TARGET_TRACK_WIDTH / baseW));
     return Array.from({ length: repeats }).flatMap(() => brands);
-  }, [viewportW]);
+  }, []);
 
+  // Skip animation work when the marquee is off-screen so we don't fight the
+  // browser for cycles while the user is scrolling other sections.
   useEffect(() => {
-    const onResize = () => setViewportW(window.innerWidth);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      visibleRef.current = true;
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) visibleRef.current = entry.isIntersecting;
+      },
+      { rootMargin: '200px 0px' },
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
@@ -77,20 +95,22 @@ export function BrandStrip() {
 
   useAnimationFrame((_t, deltaMs) => {
     if (halfWidth === 0) return;
+    if (!visibleRef.current) return;
     if (reduce) {
       x.set(0);
       return;
     }
 
+    const dt = Math.min(deltaMs, MAX_FRAME_MS);
+
     const targetSpeed = hovered ? 0 : SCROLL_PX_PER_SEC;
-    const easeFactor = 1 - Math.exp(-deltaMs / 180);
+    const easeFactor = 1 - Math.exp(-dt / 180);
     currentSpeedRef.current +=
       (targetSpeed - currentSpeedRef.current) * easeFactor;
 
     if (Math.abs(currentSpeedRef.current) < 0.01) return;
 
-    const dt = deltaMs / 1000;
-    let next = x.get() - currentSpeedRef.current * dt;
+    let next = x.get() - currentSpeedRef.current * (dt / 1000);
 
     if (next <= -halfWidth) next += halfWidth;
     else if (next > 0) next -= halfWidth;
@@ -100,6 +120,7 @@ export function BrandStrip() {
 
   return (
     <Box
+      ref={sectionRef}
       component="section"
       aria-label="Brands worked with"
       sx={{
@@ -110,6 +131,10 @@ export function BrandStrip() {
         borderBottom: '1px solid',
         borderColor: 'divider',
         overflow: 'hidden',
+        // Isolate layout/paint so the constantly-animating marquee doesn't
+        // invalidate paint for the rest of the page (and vice versa) while
+        // the user is scrolling.
+        contain: 'layout paint',
       }}
     >
       <Typography
