@@ -1,0 +1,204 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: #070713;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--ab-fontFamily-body, 'Inter', system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: #f1edff;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.45);
+  color: #ffffff;
+}
+
+/* Aurora background — slow, drifting blurred orbs */
+.ab-aurora {
+  position: fixed;
+  inset: -10vmax;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  filter: blur(80px) saturate(120%);
+  opacity: 0.65;
+}
+
+.ab-aurora::before,
+.ab-aurora::after,
+.ab-aurora .ab-aurora-blob {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+
+.ab-aurora::before {
+  width: 55vmax;
+  height: 55vmax;
+  left: -10vmax;
+  top: -10vmax;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.55) 0%, rgba(168, 85, 247, 0) 65%);
+  animation: ab-aurora-drift-1 38s ease-in-out infinite alternate;
+}
+
+.ab-aurora::after {
+  width: 60vmax;
+  height: 60vmax;
+  right: -15vmax;
+  bottom: -15vmax;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.42) 0%, rgba(34, 211, 238, 0) 65%);
+  animation: ab-aurora-drift-2 44s ease-in-out infinite alternate;
+}
+
+.ab-aurora .ab-aurora-blob {
+  width: 45vmax;
+  height: 45vmax;
+  left: 30vw;
+  top: 50vh;
+  background: radial-gradient(circle, rgba(108, 31, 179, 0.5) 0%, rgba(108, 31, 179, 0) 65%);
+  animation: ab-aurora-drift-3 52s ease-in-out infinite alternate;
+}
+
+@keyframes ab-aurora-drift-1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(8vw, 6vh, 0) scale(1.15);
+  }
+}
+
+@keyframes ab-aurora-drift-2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(-10vw, -8vh, 0) scale(1.1);
+  }
+}
+
+@keyframes ab-aurora-drift-3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+  }
+  100% {
+    transform: translate3d(-12vw, 4vh, 0) scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-aurora::before,
+  .ab-aurora::after,
+  .ab-aurora .ab-aurora-blob {
+    animation: none;
+  }
+}
+
+/* Grid overlay — barely-there scanlines on top of everything */
+.ab-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(168, 132, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 132, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7), transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7), transparent 75%);
+}
+
+/* Section anchor offset for sticky nav */
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+/* Animated gradient text helper */
+.ab-gradient-text {
+  background: linear-gradient(120deg, #f1edff 0%, #c6a4ff 35%, #67e8f9 70%, #f1edff 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ab-gradient-pan 9s ease-in-out infinite;
+}
+
+@keyframes ab-gradient-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-gradient-text {
+    animation: none;
+  }
+}
+
+/* Visible focus rings for keyboard users. Pointer interactions stay clean. */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.18);
+}
+
+/* Global reduce-motion safety net — kills CSS animations and transitions
+   that aren't already gated by component-level useReducedMotion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

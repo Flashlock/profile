@@ -2,15 +2,154 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <title>Austin Betts - Senior Full Stack & AI Engineer</title>
     <meta
       name="description"
-      content="A personal profile website built with React and Vite."
+      content="Austin Betts is a Senior Full Stack and AI Engineer in Portland, OR. I build developer tooling, agentic AI platforms, and API ecosystems - including Workday's Developer Copilot for APIs, REST Explorer, and Scaffold (scaffai.co)."
     />
-    <title>Personal Profile</title>
+    <meta
+      name="keywords"
+      content="Austin Betts, Flashlock, Senior Software Engineer, Full Stack Engineer, AI Engineer, Developer Experience, Developer Tooling, Workday, Developer Copilot, REST Explorer, Scaffold, Scaffai, Koog, Spring Boot, React, TypeScript, Kotlin, Portland Oregon"
+    />
+    <meta name="author" content="Austin Betts" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#070713" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="application-name" content="Austin Betts" />
+    <meta name="apple-mobile-web-app-title" content="Austin Betts" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="canonical" href="https://flashlock.github.io/profile/" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+    <link rel="mask-icon" href="./favicon.svg" color="#a855f7" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <!-- Open Graph (Facebook, LinkedIn, Slack, Discord, iMessage) -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Austin Betts" />
+    <meta property="og:title" content="Austin Betts - Senior Full Stack & AI Engineer" />
+    <meta
+      property="og:description"
+      content="Senior Full Stack and AI Engineer building developer tooling, agentic AI platforms, and API ecosystems. Workday API Tooling Team, founder of Scaffold (scaffai.co)."
+    />
+    <meta property="og:url" content="https://flashlock.github.io/profile/" />
+    <meta property="og:image" content="https://flashlock.github.io/profile/og-image.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Austin Betts - Senior Full Stack & AI Engineer" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="profile:first_name" content="Austin" />
+    <meta property="profile:last_name" content="Betts" />
+    <meta property="profile:username" content="Flashlock" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Austin Betts - Senior Full Stack & AI Engineer" />
+    <meta
+      name="twitter:description"
+      content="Senior Full Stack and AI Engineer building developer tooling, agentic AI platforms, and API ecosystems."
+    />
+    <meta name="twitter:image" content="https://flashlock.github.io/profile/og-image.svg" />
+    <meta name="twitter:image:alt" content="Austin Betts - Senior Full Stack & AI Engineer" />
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Preload the hero headshot so it shows up fast on first paint -->
+    <link rel="preload" as="image" href="./headshot.jpg" fetchpriority="high" />
+
+    <!-- JSON-LD: Person schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Austin Betts",
+        "alternateName": "Flashlock",
+        "givenName": "Austin",
+        "familyName": "Betts",
+        "url": "https://flashlock.github.io/profile/",
+        "image": "https://flashlock.github.io/profile/headshot.jpg",
+        "jobTitle": "Senior Full Stack & AI Engineer",
+        "email": "mailto:a.james.betts@gmail.com",
+        "telephone": "+1-208-870-8445",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Portland",
+          "addressRegion": "OR",
+          "addressCountry": "US"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Workday",
+          "url": "https://www.workday.com/"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Washington State University"
+        },
+        "knowsAbout": [
+          "Full Stack Engineering",
+          "AI Engineering",
+          "Agentic AI",
+          "Developer Experience",
+          "Developer Tooling",
+          "API Architecture",
+          "React",
+          "TypeScript",
+          "Kotlin",
+          "Spring Boot",
+          "Koog",
+          "Temporal",
+          "n8n"
+        ],
+        "sameAs": [
+          "https://github.com/Flashlock",
+          "https://github.com/sponsors/Flashlock",
+          "https://www.linkedin.com/in/austin-betts-a392b31bb/",
+          "https://scaffai.co/",
+          "https://flashlock.github.io/kahn-queue/"
+        ]
+      }
+    </script>
+
+    <!-- JSON-LD: WebSite + sitelinks-search disabled (single page) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Austin Betts - Portfolio",
+        "url": "https://flashlock.github.io/profile/",
+        "author": {
+          "@type": "Person",
+          "name": "Austin Betts"
+        },
+        "inLanguage": "en-US"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p style="font-family: system-ui, sans-serif; color: #f1edff; background: #070713; padding: 24px;">
+        This site is an interactive React portfolio for Austin Betts - Senior Full Stack & AI Engineer.
+        Please enable JavaScript to view it. You can also reach me at
+        <a href="mailto:a.james.betts@gmail.com" style="color: #c6a4ff;">a.james.betts@gmail.com</a>
+        or on
+        <a href="https://www.linkedin.com/in/austin-betts-a392b31bb/" style="color: #c6a4ff;">LinkedIn</a>.
+      </p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

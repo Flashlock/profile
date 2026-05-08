@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="og-bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a0a1a" />
+      <stop offset="1" stop-color="#15122e" />
+    </linearGradient>
+
+    <radialGradient id="og-aurora-1" cx="0" cy="0" r="1" gradientTransform="translate(180 160) scale(520)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a855f7" stop-opacity="0.55" />
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="og-aurora-2" cx="0" cy="0" r="1" gradientTransform="translate(1100 540) scale(560)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="og-tile" x1="0" y1="0" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a855f7" stop-opacity="0.95" />
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0.85" />
+    </linearGradient>
+
+    <linearGradient id="og-name" x1="0" y1="0" x2="900" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f1edff" />
+      <stop offset="0.55" stop-color="#c6a4ff" />
+      <stop offset="1" stop-color="#67e8f9" />
+    </linearGradient>
+
+    <pattern id="og-grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="rgba(168, 132, 255, 0.06)" stroke-width="1" />
+    </pattern>
+
+    <filter id="og-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="b" />
+      <feMerge>
+        <feMergeNode in="b" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#og-bg)" />
+  <rect width="1200" height="630" fill="url(#og-grid)" />
+  <rect width="1200" height="630" fill="url(#og-aurora-1)" />
+  <rect width="1200" height="630" fill="url(#og-aurora-2)" />
+
+  <!-- AB tile -->
+  <g transform="translate(96 195)" filter="url(#og-glow)">
+    <rect width="240" height="240" rx="40" fill="url(#og-tile)" />
+    <text
+      x="120"
+      y="120"
+      text-anchor="middle"
+      dominant-baseline="central"
+      font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+      font-weight="700"
+      font-size="100"
+      letter-spacing="2"
+      fill="#0a0a1a"
+    >AB</text>
+  </g>
+
+  <!-- Eyebrow -->
+  <text
+    x="396"
+    y="232"
+    font-family="'JetBrains Mono', ui-monospace, monospace"
+    font-size="22"
+    letter-spacing="6"
+    fill="#a855f7"
+    font-weight="600"
+  >PORTFOLIO // 2026</text>
+
+  <!-- Name -->
+  <text
+    x="396"
+    y="320"
+    font-family="'Space Grotesk', 'Inter', system-ui, sans-serif"
+    font-size="92"
+    font-weight="700"
+    letter-spacing="-2"
+    fill="url(#og-name)"
+  >Austin Betts</text>
+
+  <!-- Title -->
+  <text
+    x="396"
+    y="380"
+    font-family="'Space Grotesk', 'Inter', system-ui, sans-serif"
+    font-size="36"
+    font-weight="500"
+    fill="rgba(241, 237, 255, 0.85)"
+  >Senior Full Stack &amp; AI Engineer</text>
+
+  <!-- Tagline -->
+  <text
+    x="396"
+    y="438"
+    font-family="'Inter', system-ui, sans-serif"
+    font-size="22"
+    font-weight="400"
+    fill="rgba(184, 179, 214, 0.92)"
+  >
+    <tspan x="396" dy="0">Developer tooling, agentic AI platforms,</tspan>
+    <tspan x="396" dy="32">and API ecosystems that ship.</tspan>
+  </text>
+
+  <!-- Tag pills -->
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18" font-weight="500">
+    <g transform="translate(396 530)">
+      <rect width="120" height="42" rx="21" fill="rgba(168, 85, 247, 0.15)" stroke="rgba(168, 132, 255, 0.5)" />
+      <text x="60" y="21" text-anchor="middle" dominant-baseline="central" fill="#d3b3ff">WORKDAY</text>
+    </g>
+    <g transform="translate(528 530)">
+      <rect width="142" height="42" rx="21" fill="rgba(34, 211, 238, 0.12)" stroke="rgba(34, 211, 238, 0.45)" />
+      <text x="71" y="21" text-anchor="middle" dominant-baseline="central" fill="#67e8f9">AGENTIC AI</text>
+    </g>
+    <g transform="translate(682 530)">
+      <rect width="180" height="42" rx="21" fill="rgba(234, 74, 170, 0.12)" stroke="rgba(234, 74, 170, 0.45)" />
+      <text x="90" y="21" text-anchor="middle" dominant-baseline="central" fill="#f9a8d4">DEVELOPER TOOLS</text>
+    </g>
+  </g>
+
+  <!-- URL footer -->
+  <text
+    x="1104"
+    y="588"
+    text-anchor="end"
+    font-family="'JetBrains Mono', ui-monospace, monospace"
+    font-size="18"
+    letter-spacing="3"
+    fill="rgba(184, 179, 214, 0.6)"
+  >flashlock.github.io/profile</text>
+</svg>

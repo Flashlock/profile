@@ -1,0 +1,18 @@
+{
+  "name": "Austin Betts - Senior Full Stack & AI Engineer",
+  "short_name": "Austin Betts",
+  "description": "Personal portfolio of Austin Betts - Senior Full Stack and AI Engineer building developer tooling, agentic AI platforms, and API ecosystems.",
+  "start_url": "/profile/",
+  "scope": "/profile/",
+  "display": "standalone",
+  "background_color": "#070713",
+  "theme_color": "#070713",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
